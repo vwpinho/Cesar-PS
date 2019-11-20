@@ -5,6 +5,15 @@
  */
 package cesar.gui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -93,6 +102,7 @@ public class CesarGui extends javax.swing.JFrame {
         jRadioButton6 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -643,6 +653,15 @@ public class CesarGui extends javax.swing.JFrame {
         );
 
         jMenu1.setText("File");
+
+        jMenuItem1.setText("Open ...");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -683,6 +702,39 @@ public class CesarGui extends javax.swing.JFrame {
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT FILES", "txt", "text"));
+        fc.setCurrentDirectory(new File("/home/vitor/Documentos/Faculdade/05 - Quinto Semestre/PS/Cesar-PS"));
+        fc.setAcceptAllFileFilterUsed(false);
+        int retVal = fc.showOpenDialog(jMenu1);
+        if(retVal == JFileChooser.APPROVE_OPTION){
+            File file = fc.getSelectedFile();
+            System.out.println("Opening: " + file.getAbsolutePath());
+            BufferedReader br;
+            try {
+                String currentLine;
+                int count = 0;
+                br = new BufferedReader(new FileReader (file.getAbsolutePath()));
+                while(null != (currentLine = br.readLine())){
+                    String [] row = new String[3];
+                    row[0] = currentLine.split(" ")[0];
+                    row[1] = currentLine.split(" ")[1];
+                    row[2] = "";
+                    ((DefaultTableModel) jTable1.getModel()).insertRow(count, row);
+                    System.out.println(currentLine);
+                    count++;
+                }
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            
+        } else{
+            System.out.println("Fail to Open!");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -741,6 +793,7 @@ public class CesarGui extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
