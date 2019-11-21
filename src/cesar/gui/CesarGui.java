@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author idsro
  */
 public class CesarGui extends javax.swing.JFrame {
-    public int pc;
+    private int pc;
     /**
      * Creates new form CesarGui
      */
@@ -29,8 +29,8 @@ public class CesarGui extends javax.swing.JFrame {
     
     public CesarGui() {
         initComponents();
-        this.pc = 1;
-        System.out.println(this.pc);
+        this.pc = 0;
+        
         // Trabalhar com bytes como se fossem inteiros
         byte [] b = hexStringToByteArray("10");
 //        k = (byte) (i & j);  // & and
