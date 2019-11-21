@@ -21,14 +21,32 @@ import javax.swing.table.DefaultTableModel;
  * @author idsro
  */
 public class CesarGui extends javax.swing.JFrame {
-
+    public int pc;
     /**
      * Creates new form CesarGui
      */
+   
+    
     public CesarGui() {
         initComponents();
+        this.pc = 1;
+        System.out.println(this.pc);
+        // Trabalhar com bytes como se fossem inteiros
+        byte [] b = hexStringToByteArray("10");
+//        k = (byte) (i & j);  // & and
+//        k = (byte) (i | j);  // | OR
+//        k = (byte) ~j ;      // ~ NOT
+//        k = i ^ j;           // ^ XOR
+//        k = (byte) (j>>1);   // SHIFT RIGHT
+//        k = (byte) (j<<1);   // SHIFT LEFT
+        System.out.println(b.length);
+        for(int i=0; i<b.length;i++){
+            System.out.println(b[i]);
+        }
+        
+       //System.out.println(k); 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-        dtm.setRowCount(65000);
+        dtm.setRowCount(0);
         jTable1.setModel(dtm);
     }
 
@@ -120,106 +138,7 @@ public class CesarGui extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "PC", "Dado", "Instrução"
@@ -707,12 +626,12 @@ public class CesarGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT FILES", "txt", "text"));
-        fc.setCurrentDirectory(new File("/home/vitor/Documentos/Faculdade/05 - Quinto Semestre/PS/Cesar-PS"));
+        fc.setCurrentDirectory(new File("/home/vwdpinho/Documentos/Cesar-PS"));
         fc.setAcceptAllFileFilterUsed(false);
         int retVal = fc.showOpenDialog(jMenu1);
         if(retVal == JFileChooser.APPROVE_OPTION){
             File file = fc.getSelectedFile();
-            System.out.println("Opening: " + file.getAbsolutePath());
+            //System.out.println("Opening: " + file.getAbsolutePath());
             BufferedReader br;
             try {
                 String currentLine;
@@ -720,12 +639,14 @@ public class CesarGui extends javax.swing.JFrame {
                 br = new BufferedReader(new FileReader (file.getAbsolutePath()));
                 while(null != (currentLine = br.readLine())){
                     String [] row = new String[3];
-                    row[0] = currentLine.split(" ")[0];
-                    row[1] = currentLine.split(" ")[1];
-                    row[2] = "";
-                    ((DefaultTableModel) jTable1.getModel()).insertRow(count, row);
-                    System.out.println(currentLine);
-                    count++;
+                    String [] aux = currentLine.split(" ");
+                    for(int i=0; i<aux.length;i++){
+                        row[0] = Integer.toString(count);
+                        row[1] = currentLine.split(" ")[i];
+                        row[2] = "";
+                        ((DefaultTableModel) jTable1.getModel()).insertRow(count, row);
+                        count++;
+                    }
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
@@ -739,6 +660,15 @@ public class CesarGui extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                                 + Character.digit(s.charAt(i+1), 16));
+        }
+        return data;
+    }   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
