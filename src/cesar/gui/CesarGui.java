@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CesarGui extends javax.swing.JFrame {
     private int pc;
+    private int [] R;
     /**
      * Creates new form CesarGui
      */
@@ -43,6 +44,8 @@ public class CesarGui extends javax.swing.JFrame {
 //        for(int i=0; i<b.length;i++){
 //            System.out.println(b[i]);
 //        }
+       
+        
         
        //System.out.println(k); 
         DefaultTableModel dtm = (DefaultTableModel) tb_cod_mem.getModel();
@@ -51,6 +54,7 @@ public class CesarGui extends javax.swing.JFrame {
         dtm = (DefaultTableModel) tb_bd.getModel();
         dtm.setRowCount(0);
         tb_bd.setModel(dtm);
+        R = new int[8];
     }
     public String getInstruction(String inst){
         int cod = Integer.parseInt(inst) / 16;
@@ -491,6 +495,11 @@ public class CesarGui extends javax.swing.JFrame {
         });
 
         btn_passo.setText("Passo-a-Passo");
+        btn_passo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_passoActionPerformed(evt);
+            }
+        });
 
         jScrollPane11.setViewportView(jTextPane9);
 
@@ -748,9 +757,78 @@ public class CesarGui extends javax.swing.JFrame {
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         // TODO add your handling code here:
-        int linhaAtual = 0;
-        while("HLT" != ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(linhaAtual, 2)){
-            
+        R[7] = 0;
+        String inst;
+        while(!"HLT".equals(inst = (String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 2))){
+            int i, mmm, rrr;
+            switch (inst) {
+                case "NOP":
+                    R[7] += 1;
+                    break;
+                case "JMP":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    // Fazer um switch case pra cada modo de enderecamento
+                    if(mmm == 1){
+                        R[7] = R[rrr];
+                    }
+                    break;
+                        
+                case "BR":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    R[7] = R[7] + i; 
+                    break;
+                case "BNE":
+                case "BEQ":
+                case "BPL":
+                case "BVC":
+                case "BVS":
+                case "BCC":
+                case "BCS":
+                case "BGE":
+                case "BLT":
+                case "BGT":
+                case "BLE":
+                case "BHI":
+                case "BLS":
+                case "CLR":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    if(mmm == 0){
+                        R[rrr] = 0;
+                    }
+                    R[7] += 2;
+                    break;
+                case "NOT":
+                case "INC":
+                case "DEC":
+                case "NEG":
+                case "TST":
+                case "ROR":
+                case "ROL":
+                case "ASR":
+                case "ASL":
+                case "ADC":
+                case "SBC":
+                case "MOV":
+                    int mmm2, rrr2, j;
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    j = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    mmm = (i/2)%8;
+                    rrr = ((i % 2) * 4) + (j / 64);
+                    mmm2 = (j / 8) % 8;
+                    rrr2 = j % 8;
+                    if(mmm == 0 && mmm2 == 0){
+                        R[rrr2] = R[rrr];
+                    }
+                case "ADD":
+                case "SUB":
+                case "CMP":
+                case "AND":
+                case "OR":
+            }
         }
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -773,6 +851,7 @@ public class CesarGui extends javax.swing.JFrame {
                 String currentLine;
                 int count = 0;
                 int iCount = 0;
+                
                 br = new BufferedReader(new FileReader (file.getAbsolutePath()));
                 while(null != (currentLine = br.readLine())){
                     String [] row = new String[3];
@@ -780,11 +859,11 @@ public class CesarGui extends javax.swing.JFrame {
                     String [] aux = currentLine.split(" ");
                     for(int i=0; i<aux.length;i++){
                         row[0] = Integer.toString(count);
-                        row[1] = currentLine.split(" ")[i];
+                        row[1] = aux[i];
                         rowBD[0] = Integer.toString(count);
-                        rowBD[1] = currentLine.split(" ")[i];
+                        rowBD[1] = aux[i];
                         if(iCount == 0){
-                            row[2] = getInstruction(currentLine.split(" ")[i]);
+                            row[2] = getInstruction(aux[i]);
                             iCount = getInstructionSize(row[2]) + 1;
                         } else{
                             row[2] = "";
@@ -792,17 +871,26 @@ public class CesarGui extends javax.swing.JFrame {
                         iCount--;
                         ((DefaultTableModel) tb_cod_mem.getModel()).insertRow(count, row);
                         ((DefaultTableModel) tb_bd.getModel()).insertRow(count, rowBD);
-                        count++;
+                        count += 1;
                     }
                 }
+                br.close();
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+           
             
         } else{
             System.out.println("Fail to Open!");
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btn_passoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_passoActionPerformed
+        // TODO add your handling code here:
+        String s = "R1";
+        int i = s.charAt(1);
+        System.out.println(i - 48);
+    }//GEN-LAST:event_btn_passoActionPerformed
 
     /**
      * @param args the command line arguments
