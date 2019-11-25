@@ -45,9 +45,12 @@ public class CesarGui extends javax.swing.JFrame {
 //        }
         
        //System.out.println(k); 
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tb_cod_mem.getModel();
         dtm.setRowCount(0);
-        jTable1.setModel(dtm);
+        tb_cod_mem.setModel(dtm);
+        dtm = (DefaultTableModel) tb_bd.getModel();
+        dtm.setRowCount(0);
+        tb_bd.setModel(dtm);
     }
     public String getInstruction(String inst){
         int cod = Integer.parseInt(inst) / 16;
@@ -194,12 +197,12 @@ public class CesarGui extends javax.swing.JFrame {
         buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_cod_mem = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb_bd = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -232,8 +235,8 @@ public class CesarGui extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_start = new javax.swing.JButton();
+        btn_passo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextPane9 = new javax.swing.JTextPane();
@@ -265,7 +268,7 @@ public class CesarGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_cod_mem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -281,7 +284,7 @@ public class CesarGui extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_cod_mem);
 
         jLabel1.setText("Código-Memória");
 
@@ -310,7 +313,7 @@ public class CesarGui extends javax.swing.JFrame {
 
         jLabel2.setText("Banco de Dados");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb_bd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -425,7 +428,7 @@ public class CesarGui extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tb_bd);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -480,14 +483,14 @@ public class CesarGui extends javax.swing.JFrame {
 
         jLabel11.setText("R7: (PC)");
 
-        jButton1.setText("START");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_start.setText("START");
+        btn_start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_startActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Passo-a-Passo");
+        btn_passo.setText("Passo-a-Passo");
 
         jScrollPane11.setViewportView(jTextPane9);
 
@@ -572,9 +575,9 @@ public class CesarGui extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_start, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jButton2)
+                                        .addComponent(btn_passo)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -652,9 +655,9 @@ public class CesarGui extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btn_passo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -743,9 +746,13 @@ public class CesarGui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int linhaAtual = 0;
+        while("HLT" != ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(linhaAtual, 2)){
+            
+        }
+    }//GEN-LAST:event_btn_startActionPerformed
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
         // TODO add your handling code here:
@@ -769,10 +776,13 @@ public class CesarGui extends javax.swing.JFrame {
                 br = new BufferedReader(new FileReader (file.getAbsolutePath()));
                 while(null != (currentLine = br.readLine())){
                     String [] row = new String[3];
+                    String [] rowBD = new String[2];
                     String [] aux = currentLine.split(" ");
                     for(int i=0; i<aux.length;i++){
                         row[0] = Integer.toString(count);
                         row[1] = currentLine.split(" ")[i];
+                        rowBD[0] = Integer.toString(count);
+                        rowBD[1] = currentLine.split(" ")[i];
                         if(iCount == 0){
                             row[2] = getInstruction(currentLine.split(" ")[i]);
                             iCount = getInstructionSize(row[2]) + 1;
@@ -780,7 +790,8 @@ public class CesarGui extends javax.swing.JFrame {
                             row[2] = "";
                         }
                         iCount--;
-                        ((DefaultTableModel) jTable1.getModel()).insertRow(count, row);
+                        ((DefaultTableModel) tb_cod_mem.getModel()).insertRow(count, row);
+                        ((DefaultTableModel) tb_bd.getModel()).insertRow(count, rowBD);
                         count++;
                     }
                 }
@@ -839,11 +850,11 @@ public class CesarGui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_passo;
+    private javax.swing.JButton btn_start;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -890,8 +901,6 @@ public class CesarGui extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane10;
     private javax.swing.JTextPane jTextPane2;
@@ -902,5 +911,7 @@ public class CesarGui extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
     private javax.swing.JTextPane jTextPane9;
+    private javax.swing.JTable tb_bd;
+    private javax.swing.JTable tb_cod_mem;
     // End of variables declaration//GEN-END:variables
 }
