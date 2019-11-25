@@ -32,22 +32,151 @@ public class CesarGui extends javax.swing.JFrame {
         this.pc = 0;
         
         // Trabalhar com bytes como se fossem inteiros
-        byte [] b = hexStringToByteArray("10");
+        //byte [] b = hexStringToByteArray("");
 //        k = (byte) (i & j);  // & and
 //        k = (byte) (i | j);  // | OR
 //        k = (byte) ~j ;      // ~ NOT
 //        k = i ^ j;           // ^ XOR
 //        k = (byte) (j>>1);   // SHIFT RIGHT
 //        k = (byte) (j<<1);   // SHIFT LEFT
-        System.out.println(b.length);
-        for(int i=0; i<b.length;i++){
-            System.out.println(b[i]);
-        }
+//        System.out.println(b.length);
+//        for(int i=0; i<b.length;i++){
+//            System.out.println(b[i]);
+//        }
         
        //System.out.println(k); 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         jTable1.setModel(dtm);
+    }
+    public String getInstruction(String inst){
+        int cod = Integer.parseInt(inst) / 16;
+        int codm = Integer.parseInt(inst) % 16;
+        switch (cod){
+            case 0:
+                return "NOP";
+            case 15:
+                return "HLT";
+            case 4:
+                return "JMP";
+                // Mais coisas no case 3
+            case 3:
+                switch (codm){
+                    case 0:
+                        return "BR";
+                    case 1:
+                        return "BNE";
+                    case 2:
+                        return "BEQ";
+                    case 3:
+                        return "BPL";
+                    case 4:
+                        return "BPL";
+                    case 5:
+                        return "BVC";
+                    case 6:
+                        return "BVS";
+                    case 7:
+                        return "BCC";
+                    case 8:
+                        return "BCS";
+                    case 9:
+                        return "BGE";
+                    case 10:
+                        return "BLT";
+                    case 11:
+                        return "BGT";
+                    case 12:
+                        return "BLE";
+                    case 13:
+                        return "BHI";
+                    case 14:
+                        return "BLS";
+                }
+                // Mais coisas no case 8
+            case 8:
+                switch (codm) {
+                    case 0:
+                        return "CLR";
+                    case 1:
+                        return "NOT";
+                    case 2:
+                        return "INC";
+                    case 3:
+                        return "DEC";
+                    case 4:
+                        return "NEG";
+                    case 5:
+                        return "TST";
+                    case 6:
+                        return "ROR";
+                    case 7:
+                        return "ROL";
+                    case 8:
+                        return "ASR";
+                    case 9:
+                        return "ASL";
+                    case 10:
+                        return "ADC";
+                    case 11:
+                        return "SBC";
+                }
+            case 9:
+                return "MOV";
+            case 10:
+                return "ADD";
+            case 11:
+                return "SUB";
+            case 12:
+                return "COMP";
+            case 13:
+                return "AND";
+            case 14: 
+                return "OR";
+            default:
+                return "";
+        }
+             
+        
+    }
+    public int getInstructionSize(String inst){
+        if(null == inst){
+            return 0;
+        } else switch (inst) {
+            case "NOP":
+            case "HLT":
+                return 0;
+            case "JMP":
+            case "BR":
+            case "BNE":
+            case "BEQ":
+            case "BPL":
+            case "BVC":
+            case "BVS":
+            case "BCC":
+            case "BCS":
+            case "BGE":
+            case "BLT":
+            case "BGT":
+            case "BLE":
+            case "BHI":
+            case "BLS":
+            case "CLR":
+            case "NOT":
+            case "INC":
+            case "DEC":
+            case "NEG":
+            case "TST":
+            case "ROR":
+            case "ROL":
+            case "ASR":
+            case "ASL":
+            case "ADC":
+            case "SBC":
+                return 1;
+            default:
+                return 2;
+        }
     }
 
     /**
@@ -626,7 +755,7 @@ public class CesarGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT FILES", "txt", "text"));
-        fc.setCurrentDirectory(new File("/home/vwdpinho/Documentos/Cesar-PS"));
+        fc.setCurrentDirectory(new File("/home/vitor/Documentos/Faculdade/05 - Quinto Semestre/PS/Cesar-PS"));
         fc.setAcceptAllFileFilterUsed(false);
         int retVal = fc.showOpenDialog(jMenu1);
         if(retVal == JFileChooser.APPROVE_OPTION){
@@ -636,6 +765,7 @@ public class CesarGui extends javax.swing.JFrame {
             try {
                 String currentLine;
                 int count = 0;
+                int iCount = 0;
                 br = new BufferedReader(new FileReader (file.getAbsolutePath()));
                 while(null != (currentLine = br.readLine())){
                     String [] row = new String[3];
@@ -643,7 +773,13 @@ public class CesarGui extends javax.swing.JFrame {
                     for(int i=0; i<aux.length;i++){
                         row[0] = Integer.toString(count);
                         row[1] = currentLine.split(" ")[i];
-                        row[2] = "";
+                        if(iCount == 0){
+                            row[2] = getInstruction(currentLine.split(" ")[i]);
+                            iCount = getInstructionSize(row[2]) + 1;
+                        } else{
+                            row[2] = "";
+                        }
+                        iCount--;
                         ((DefaultTableModel) jTable1.getModel()).insertRow(count, row);
                         count++;
                     }
@@ -668,7 +804,8 @@ public class CesarGui extends javax.swing.JFrame {
                                  + Character.digit(s.charAt(i+1), 16));
         }
         return data;
-    }   
+    } 
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
