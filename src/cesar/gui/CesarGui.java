@@ -760,7 +760,8 @@ public class CesarGui extends javax.swing.JFrame {
         R[7] = 0;
         String inst;
         while(!"HLT".equals(inst = (String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 2))){
-            int i, mmm, rrr;
+            int i, mmm, rrr, op, des, carry, pos; 
+            boolean N, Z, V, C;
             switch (inst) {
                 case "NOP":
                     R[7] += 1;
@@ -773,45 +774,3658 @@ public class CesarGui extends javax.swing.JFrame {
                     if(mmm == 1){
                         R[7] = R[rrr];
                     }
-                    break;
-                        
+                    break;                        
                 case "BR":
                     i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
                     R[7] = R[7] + i; 
                     break;
                 case "BNE":
-                case "BEQ":
-                case "BPL":
-                case "BVC":
-                case "BVS":
-                case "BCC":
-                case "BCS":
-                case "BGE":
-                case "BLT":
-                case "BGT":
-                case "BLE":
-                case "BHI":
-                case "BLS":
-                case "CLR":
                     i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    Z = jRadioButton2.isSelected();
+                    if(!Z){
+                        R[7] = R[7] + i;
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BEQ":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    Z = jRadioButton2.isSelected();
+                    if(Z){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BPL":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    if(!N){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BMI":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    if(N){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BVC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    V = jRadioButton4.isSelected();
+                    if(!V){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2; 
+                    }
+                    break;
+                case "BVS":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    V = jRadioButton4.isSelected();
+                    if(V){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BCC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    C = jRadioButton6.isSelected();
+                    if(!C){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BCS":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    C = jRadioButton6.isSelected();
+                    if(C){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BGE":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    V = jRadioButton4.isSelected();
+                    if(N == V){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BLT":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    V = jRadioButton4.isSelected();
+                    if(N != V){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BGT":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    V = jRadioButton4.isSelected();
+                    Z = jRadioButton2.isSelected();
+                    if((N == V) && !Z){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2; 
+                    }
+                    break;
+                case "BLE":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    N = jRadioButton5.isSelected();
+                    V = jRadioButton4.isSelected();
+                    Z = jRadioButton2.isSelected();
+                    if((N != V) || Z){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BHI":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    C = jRadioButton6.isSelected();
+                    Z = jRadioButton2.isSelected();
+                    if(!C && !Z){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2;
+                    }
+                    break;
+                case "BLS":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    C = jRadioButton6.isSelected();
+                    Z = jRadioButton2.isSelected();
+                    if(C || Z){
+                        R[7] = R[7] + i; 
+                    }
+                    else{
+                        R[7] = R[7] + 2; 
+                    }
+                    break;
+                case "CLR":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
                     mmm = (i/8)%8;
                     rrr = i % 8;
-                    if(mmm == 0){
-                        R[rrr] = 0;
+                    jRadioButton6.setSelected(false); // desliga o C
+                    jRadioButton4.setSelected(false); // desliga o V
+                    jRadioButton5.setSelected(false); // desliga o N
+                    jRadioButton2.setSelected(true); // liga o Z
+                    switch(mmm){
+                        case 0: // Modo registrador                            
+                            R[rrr] = 0;                            
+                            break;
+                        case 1: // Modo registrador pos-incremento                          
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] , 1);
+                            R[rrr] += 1; // Estamos considerando a memória endereçada a 16 bits caso contrario teria que somar 2 para pular 2 bytes
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
+                            break;           
                     }
-                    R[7] += 2;
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }                       
                     break;
                 case "NOT":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    jRadioButton6.setSelected(true); // liga o C
+                    jRadioButton4.setSelected(false); // desliga o V
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            
+                            break;
+                        case 3: // Modo registrador indexado
+                            
+                            break;
+                        case 4: // Modo registrador indireto
+                            
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            
+                            break;                     
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "INC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            R[rrr] += 1;
+                            if(R[rrr] == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;    
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1; 
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op += 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "DEC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            R[rrr] -= 1;
+                            if(R[rrr] == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;    
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1; 
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op -= 1;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "NEG":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            R[rrr] = -R[rrr];
+                            if(R[rrr] == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;    
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1; 
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            op = -op;
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;                   
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "TST":
-                case "ROR":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    jRadioButton6.setSelected(false); // desliga o C
+                    jRadioButton4.setSelected(false); // desliga o V
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            if(R[rrr] == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;    
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1; 
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if(op == 0){
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
+                case "ROR":                    
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected();                 
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            carry = R[rrr]%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                R[rrr] = (R[rrr]/2)+32768; 
+                            }
+                            else{
+                                R[rrr] = R[rrr]/2;
+                            }
+                            if(R[rrr] == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "ROL":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected();                 
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            carry = (R[rrr]/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                R[rrr] = ((R[rrr]*2)%65536)+1; 
+                            }
+                            else{
+                                R[rrr] = (R[rrr]*2)%65536;
+                            }
+                            if(R[rrr] == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(C){
+                                op = ((op*2)%65536)+1; 
+                            }
+                            else{
+                                op = (op*2)%65536;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "ASR":
+                    int msb;
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected();              
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            carry = R[rrr]%2;
+                            msb = (R[rrr]/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                R[rrr] = (R[rrr]/2)+32768; 
+                            }
+                            else{
+                                R[rrr] = R[rrr]/2;
+                            }
+                            if(R[rrr] == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = op%2;
+                            msb = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            if(msb == 1){
+                                op = (op/2)+32768; 
+                            }
+                            else{
+                                op = op/2;
+                            }
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "ASL":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected();                 
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            carry = (R[rrr]/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            R[rrr] = (R[rrr]*2)%65536;                         
+                            if(R[rrr] == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // desliga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            carry = (op/32768)%2;
+                            if (carry == 1){
+                                jRadioButton6.setSelected(true); // liga o C
+                            }
+                            else{
+                                jRadioButton6.setSelected(false); // desliga o C
+                            }
+                            op = (op*2)%65536;
+                            if(op == 0){                                
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            N = jRadioButton5.isSelected();
+                            jRadioButton4.setSelected((N ^ C));
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                    
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "ADC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected(); 
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            if (C){
+                                R[rrr] += 1;
+                            }
+                            else{
+                                R[rrr] += 0;
+                            }
+                            if(R[rrr] == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado,
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op += 1;
+                            }
+                            else{
+                                op += 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                     
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "SBC":
+                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    mmm = (i/8)%8;
+                    rrr = i % 8;
+                    C = jRadioButton6.isSelected(); 
+                    switch(mmm){
+                        case 0: // Modo registrador
+                            if (C){
+                                R[rrr] -= 1;
+                            }
+                            else{
+                                R[rrr] -= 0;
+                            }
+                            if(R[rrr] == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (R[rrr] < 0){
+                                if(R[rrr] < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(R[rrr] > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            break;
+                        case 1: // Modo registrador pos-incremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 2: // Modo registrador pré-decremento
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 3: // Modo registrador indexado,
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
+                            break;
+                        case 4: // Modo registrador indireto
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
+                            break;
+                        case 5: // Modo registrador pos-incremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] += 1;
+                            break;
+                        case 6: // Modo registrador pre-dercremento indireto
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            R[rrr] -= 1;
+                            break;
+                        case 7: // Modo registrador indexado indireto
+                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            if (C){
+                                op -= 1;
+                            }
+                            else{
+                                op -= 0;
+                            }
+                            if(op == 0){
+                                jRadioButton6.setSelected(false); // desliga o C
+                                jRadioButton4.setSelected(false); // desliga o V
+                                jRadioButton5.setSelected(false); // desliga o N
+                                jRadioButton2.setSelected(true); // liga o Z
+                            }
+                            else if (op < 0){
+                                if(op < -32768){
+                                    jRadioButton6.setSelected(true); // liga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(true); // liga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            else{
+                                if(op > 32767){
+                                    jRadioButton6.setSelected(true); // desliga o C
+                                    jRadioButton4.setSelected(true); // liga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                                else{
+                                    jRadioButton6.setSelected(false); // desliga o C
+                                    jRadioButton4.setSelected(false); // desliga o V
+                                    jRadioButton5.setSelected(false); // desliga o N
+                                    jRadioButton2.setSelected(false); // desliga o Z
+                                }
+                            }
+                            ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
+                            break;                     
+                    }
+                    if(mmm == 3 || mmm == 7){
+                        R[7] += 3;
+                    }
+                    else{
+                        R[7] += 2;
+                    }
+                    break;
                 case "MOV":
                     int mmm2, rrr2, j;
                     i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
