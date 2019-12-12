@@ -518,15 +518,17 @@ public class CesarGui extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -536,15 +538,13 @@ public class CesarGui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane11)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jRadioButton5.setText("N");
@@ -632,7 +632,7 @@ public class CesarGui extends javax.swing.JFrame {
                         .addComponent(jSeparator1)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -664,7 +664,7 @@ public class CesarGui extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_passo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -769,7 +769,7 @@ public class CesarGui extends javax.swing.JFrame {
                     R[7] += 1;
                     break;
                 case "JMP":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     switch(mmm){
@@ -785,35 +785,35 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3:
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                             R[7] = R[rrr] + des;
                             break;
                         case 4:
                             R[7] = R[rrr];
                             break;
                         case 5:
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             R[7] = pos;
                             R[rrr] += 1;
                             break; 
                         case 6:
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             R[7] = pos;
                             R[rrr] -= 1;
                             break;
                         case 7:
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
                             R[7] = pos;
                             break;
                     }
                     break;                        
                 case "BR":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     R[7] = R[7] + i; 
                     break;
                 case "BNE":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     Z = jRadioButton2.isSelected();
                     if(!Z){
                         R[7] = R[7] + i;
@@ -823,7 +823,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BEQ":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     Z = jRadioButton2.isSelected();
                     if(Z){
                         R[7] = R[7] + i; 
@@ -833,7 +833,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BPL":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     if(!N){
                         R[7] = R[7] + i; 
@@ -843,7 +843,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BMI":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     if(N){
                         R[7] = R[7] + i; 
@@ -853,7 +853,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BVC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     V = jRadioButton4.isSelected();
                     if(!V){
                         R[7] = R[7] + i; 
@@ -863,7 +863,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BVS":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     V = jRadioButton4.isSelected();
                     if(V){
                         R[7] = R[7] + i; 
@@ -873,7 +873,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BCC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     C = jRadioButton6.isSelected();
                     if(!C){
                         R[7] = R[7] + i; 
@@ -883,7 +883,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BCS":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     C = jRadioButton6.isSelected();
                     if(C){
                         R[7] = R[7] + i; 
@@ -893,7 +893,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BGE":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     V = jRadioButton4.isSelected();
                     if(N == V){
@@ -904,7 +904,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BLT":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     V = jRadioButton4.isSelected();
                     if(N != V){
@@ -915,7 +915,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BGT":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     V = jRadioButton4.isSelected();
                     Z = jRadioButton2.isSelected();
@@ -927,7 +927,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BLE":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     N = jRadioButton5.isSelected();
                     V = jRadioButton4.isSelected();
                     Z = jRadioButton2.isSelected();
@@ -939,7 +939,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BHI":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     C = jRadioButton6.isSelected();
                     Z = jRadioButton2.isSelected();
                     if(!C && !Z){
@@ -950,7 +950,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "BLS":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     C = jRadioButton6.isSelected();
                     Z = jRadioButton2.isSelected();
                     if(C || Z){
@@ -961,7 +961,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "CLR":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     jRadioButton6.setSelected(false); // desliga o C
@@ -981,25 +981,25 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(0, pos , 1);
                             break;           
                     }
@@ -1012,7 +1012,7 @@ public class CesarGui extends javax.swing.JFrame {
                     break;
                 case "NOT":
                     String dado = "", not = "", complet = "";
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;                    
                     jRadioButton6.setSelected(true); // liga o C
@@ -1062,7 +1062,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1108,7 +1108,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1154,8 +1154,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1200,7 +1200,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1245,8 +1245,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1292,8 +1292,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1339,9 +1339,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             dado = Integer.toBinaryString(op);
                             for (int j = 0; j < 16; j++) {
                                 try{
@@ -1394,7 +1394,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "INC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     switch(mmm){
@@ -1436,7 +1436,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1476,7 +1476,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;    
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1516,8 +1516,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1; 
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             if(op == 0){
@@ -1556,7 +1556,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1595,8 +1595,8 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -1633,11 +1633,11 @@ public class CesarGui extends javax.swing.JFrame {
                                     jRadioButton2.setSelected(false); // desliga o Z
                                 }
                             }
-                            R[rrr] += 1;
+                            R[rrr] += 2;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -1677,9 +1677,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op += 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -1726,7 +1726,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "DEC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     switch(mmm){
@@ -1768,7 +1768,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1808,7 +1808,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;    
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1848,8 +1848,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1; 
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             if(op == 0){
@@ -1888,7 +1888,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -1927,8 +1927,8 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -1968,8 +1968,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -2009,9 +2009,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op -= 1;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -2058,7 +2058,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "NEG":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     switch(mmm){
@@ -2100,7 +2100,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -2140,7 +2140,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;    
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -2180,8 +2180,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1; 
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             if(op == 0){
@@ -2220,7 +2220,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             if(op == 0){
@@ -2259,8 +2259,8 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -2300,8 +2300,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -2341,9 +2341,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             op = -op;
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                             if(op == 0){
@@ -2390,7 +2390,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "TST":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     jRadioButton6.setSelected(false); // desliga o C
@@ -2423,7 +2423,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2451,7 +2451,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;    
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2479,8 +2479,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1; 
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2507,7 +2507,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2534,8 +2534,8 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2563,8 +2563,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2592,9 +2592,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if(op == 0){
                                 jRadioButton5.setSelected(false); // desliga o N
                                 jRadioButton2.setSelected(true); // liga o Z
@@ -2629,7 +2629,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "ROR":                    
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected();                 
@@ -2676,7 +2676,7 @@ public class CesarGui extends javax.swing.JFrame {
                             jRadioButton4.setSelected((N ^ C));
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -2720,7 +2720,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -2764,8 +2764,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -2808,7 +2808,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -2851,8 +2851,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -2896,8 +2896,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -2941,9 +2941,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -2994,7 +2994,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "ROL":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected();                 
@@ -3041,7 +3041,7 @@ public class CesarGui extends javax.swing.JFrame {
                             jRadioButton4.setSelected((N ^ C));
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3085,7 +3085,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3129,8 +3129,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3173,7 +3173,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3216,8 +3216,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3261,8 +3261,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3306,9 +3306,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3360,7 +3360,7 @@ public class CesarGui extends javax.swing.JFrame {
                     break;
                 case "ASR":
                     int msb;
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected();              
@@ -3408,7 +3408,7 @@ public class CesarGui extends javax.swing.JFrame {
                             jRadioButton4.setSelected((N ^ C));
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3453,7 +3453,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3498,8 +3498,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3543,7 +3543,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3587,8 +3587,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3633,8 +3633,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3679,9 +3679,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = op%2;
                             msb = (op/32768)%2;
                             if (carry == 1){
@@ -3733,7 +3733,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "ASL":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected();                 
@@ -3775,7 +3775,7 @@ public class CesarGui extends javax.swing.JFrame {
                             jRadioButton4.setSelected((N ^ C));
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3814,7 +3814,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3853,8 +3853,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // desliga o C
@@ -3892,7 +3892,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3930,8 +3930,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -3970,8 +3970,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -4010,9 +4010,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             carry = (op/32768)%2;
                             if (carry == 1){
                                 jRadioButton6.setSelected(true); // liga o C
@@ -4058,7 +4058,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "ADC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected(); 
@@ -4106,7 +4106,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if (C){
                                 op += 1;
                             }
@@ -4151,7 +4151,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if (C){
                                 op += 1;
                             }
@@ -4196,8 +4196,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado,
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             if (C){
                                 op += 1;
                             }
@@ -4241,7 +4241,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             if (C){
                                 op += 1;
                             }
@@ -4285,8 +4285,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op += 1;
                             }
@@ -4331,8 +4331,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op += 1;
                             }
@@ -4377,9 +4377,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op += 1;
                             }
@@ -4431,7 +4431,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "SBC":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1);                    
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1 , 1));                    
                     mmm = (i/8)%8;
                     rrr = i % 8;
                     C = jRadioButton6.isSelected(); 
@@ -4479,7 +4479,7 @@ public class CesarGui extends javax.swing.JFrame {
                             }
                             break;
                         case 1: // Modo registrador pos-incremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if (C){
                                 op -= 1;
                             }
@@ -4524,7 +4524,7 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 2: // Modo registrador pré-decremento
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                             if (C){
                                 op -= 1;
                             }
@@ -4569,8 +4569,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 3: // Modo registrador indexado,
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                             if (C){
                                 op -= 1;
                             }
@@ -4614,7 +4614,7 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] + des , 1);
                             break;
                         case 4: // Modo registrador indireto
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                             if (C){
                                 op -= 1;
                             }
@@ -4658,8 +4658,8 @@ public class CesarGui extends javax.swing.JFrame {
                             ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, R[rrr] , 1);
                             break;
                         case 5: // Modo registrador pos-incremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op -= 1;
                             }
@@ -4704,8 +4704,8 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] += 1;
                             break;
                         case 6: // Modo registrador pre-dercremento indireto
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op -= 1;
                             }
@@ -4750,9 +4750,9 @@ public class CesarGui extends javax.swing.JFrame {
                             R[rrr] -= 1;
                             break;
                         case 7: // Modo registrador indexado indireto
-                            des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                            pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                            op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                            des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                            pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                            op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                             if (C){
                                 op -= 1;
                             }
@@ -4804,8 +4804,8 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "MOV":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4943,8 +4943,8 @@ public class CesarGui extends javax.swing.JFrame {
                     break;
                 case "CMP":
                     int comp;
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4990,8 +4990,8 @@ public class CesarGui extends javax.swing.JFrame {
                     this.set_op(mmm2, rrr2, op2);
                     break;
                 case "AND":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -5032,8 +5032,8 @@ public class CesarGui extends javax.swing.JFrame {
                     this.set_op(mmm2, rrr2, op2);
                     break;
                 case "OR":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -5091,30 +5091,30 @@ public class CesarGui extends javax.swing.JFrame {
             case 0:
                 return R[rrr];
             case 1:
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                 return op;
             case 2:
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1); 
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1)); 
                 return op;
             case 3:
-                des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1); 
+                des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1)); 
                 return op;
             case 4:
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                 return op;
             case 5:
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                 return op;
             case 6:
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                 return op;
             case 7:
-                des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
-                op = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1);
+                des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
+                op = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(pos , 1));
                 return op;
         }
         return op;
@@ -5135,25 +5135,25 @@ public class CesarGui extends javax.swing.JFrame {
                 R[rrr] -= 1; 
                 break;
             case 3:
-                des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
+                des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
                 ((DefaultTableModel) tb_bd.getModel()).setValueAt(res, R[rrr] + des , 1);
                 break;
             case 4:
                 ((DefaultTableModel) tb_bd.getModel()).setValueAt(res, R[rrr] , 1);
                 break;
             case 5:
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                 ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                 R[rrr] += 1;
                 break;
             case 6:
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1);
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] , 1));
                 ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                 R[rrr] -= 1;
                 break;
             case 7:
-                des = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1);
-                pos = (int) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1);
+                des = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2 , 1));
+                pos = Integer.parseInt((String) ((DefaultTableModel) tb_bd.getModel()).getValueAt(R[rrr] + des , 1));
                 ((DefaultTableModel) tb_bd.getModel()).setValueAt(op, pos , 1);
                 break;
         }
@@ -5212,6 +5212,13 @@ public class CesarGui extends javax.swing.JFrame {
             
         } else{
             System.out.println("Fail to Open!");
+        }
+        
+        for (int i = ((DefaultTableModel) tb_bd.getModel()).getRowCount(); i < 65536; i++) {
+            String [] rowBD = new String[2];
+            rowBD[0] = Integer.toString(i);
+            rowBD[1] = "0";
+            ((DefaultTableModel) tb_bd.getModel()).insertRow(i, rowBD);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
