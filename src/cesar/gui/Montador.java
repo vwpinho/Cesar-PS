@@ -42,10 +42,10 @@ public class Montador {
             pw = new PrintWriter(fw);
             br = new BufferedReader(new FileReader(file.getAbsolutePath()));
             while (null != (currentLine = br.readLine())) {
-                System.out.println(currentLine);
+                //System.out.println(currentLine);
                 line = currentLine.split(" ");
                 String inst = line[0];
-                System.out.println(line[0]);
+                //System.out.println(line[0]);
                 int mmm1 = 0, rrr1 = 0, mmm2 = 0, ddd = 0, rrr2 = 0, b1, b2;
                 switch (inst) {
                     case "NOP":
