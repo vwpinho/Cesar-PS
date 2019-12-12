@@ -209,21 +209,21 @@ public class CesarGui extends javax.swing.JFrame {
         tb_bd = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        tp_r0 = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        tp_r2 = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        tp_r4 = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        tp_r6 = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextPane5 = new javax.swing.JTextPane();
+        tp_r1 = new javax.swing.JTextPane();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
+        tp_r3 = new javax.swing.JTextPane();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextPane7 = new javax.swing.JTextPane();
+        tp_r5 = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane8 = new javax.swing.JTextPane();
+        tp_r7 = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -455,21 +455,21 @@ public class CesarGui extends javax.swing.JFrame {
                 .addGap(150, 150, 150))
         );
 
-        jScrollPane3.setViewportView(jTextPane1);
+        jScrollPane3.setViewportView(tp_r0);
 
-        jScrollPane4.setViewportView(jTextPane2);
+        jScrollPane4.setViewportView(tp_r2);
 
-        jScrollPane5.setViewportView(jTextPane3);
+        jScrollPane5.setViewportView(tp_r4);
 
-        jScrollPane6.setViewportView(jTextPane4);
+        jScrollPane6.setViewportView(tp_r6);
 
-        jScrollPane7.setViewportView(jTextPane5);
+        jScrollPane7.setViewportView(tp_r1);
 
-        jScrollPane8.setViewportView(jTextPane6);
+        jScrollPane8.setViewportView(tp_r3);
 
-        jScrollPane9.setViewportView(jTextPane7);
+        jScrollPane9.setViewportView(tp_r5);
 
-        jScrollPane10.setViewportView(jTextPane8);
+        jScrollPane10.setViewportView(tp_r7);
 
         jLabel3.setText("R4:");
 
@@ -626,13 +626,13 @@ public class CesarGui extends javax.swing.JFrame {
                                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(13, 13, 13)))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jSeparator1)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -760,6 +760,7 @@ public class CesarGui extends javax.swing.JFrame {
         R[7] = 0;
         String inst;
         while(!"HLT".equals(inst = (String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 2))){
+            System.out.println(inst);
             int i, mmm, rrr, op, des, carry, pos; 
             int mmm2, rrr2, i2, op1, op2;
             boolean N, Z, V, C;
@@ -4845,8 +4846,8 @@ public class CesarGui extends javax.swing.JFrame {
                     this.set_op(mmm2, rrr2, op2);
                     break;
                 case "ADD":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4890,10 +4891,11 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 3;
                     break;
                 case "SUB":
-                    i = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1);
-                    i2 = (int) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1);
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4937,6 +4939,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 3;
                     break;
                 case "CMP":
                     int comp;
@@ -5071,6 +5074,14 @@ public class CesarGui extends javax.swing.JFrame {
                     this.set_op(mmm2, rrr2, op2);
                     break;
             }
+            tp_r0.setText(Integer.toString(R[0]));
+            tp_r1.setText(Integer.toString(R[1]));
+            tp_r2.setText(Integer.toString(R[2]));
+            tp_r3.setText(Integer.toString(R[3]));
+            tp_r4.setText(Integer.toString(R[4]));
+            tp_r5.setText(Integer.toString(R[5]));
+            tp_r6.setText(Integer.toString(R[6]));
+            tp_r7.setText(Integer.toString(R[7]));
         }   
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -5160,15 +5171,18 @@ public class CesarGui extends javax.swing.JFrame {
         fc.setAcceptAllFileFilterUsed(false);
         int retVal = fc.showOpenDialog(jMenu1);
         if(retVal == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
+            File prog = fc.getSelectedFile();
             //System.out.println("Opening: " + file.getAbsolutePath());
+
+            Montador mont = new Montador(prog.getAbsolutePath(), "out.txt");
             BufferedReader br;
             try {
                 String currentLine;
                 int count = 0;
                 int iCount = 0;
-                
-                br = new BufferedReader(new FileReader (file.getAbsolutePath()));
+                mont.Monta();
+                File f = new File("out.txt");
+                br = new BufferedReader(new FileReader (f.getAbsolutePath()));
                 while(null != (currentLine = br.readLine())){
                     String [] row = new String[3];
                     String [] rowBD = new String[2];
@@ -5203,9 +5217,9 @@ public class CesarGui extends javax.swing.JFrame {
 
     private void btn_passoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_passoActionPerformed
         // TODO add your handling code here:
-        String s = "R1";
-        int i = s.charAt(1);
-        System.out.println(i - 48);
+        int i;
+        R[7] = 0;
+        i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
     }//GEN-LAST:event_btn_passoActionPerformed
 
     /**
@@ -5305,17 +5319,17 @@ public class CesarGui extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane10;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JTextPane jTextPane5;
-    private javax.swing.JTextPane jTextPane6;
-    private javax.swing.JTextPane jTextPane7;
-    private javax.swing.JTextPane jTextPane8;
     private javax.swing.JTextPane jTextPane9;
     private javax.swing.JTable tb_bd;
     private javax.swing.JTable tb_cod_mem;
+    private javax.swing.JTextPane tp_r0;
+    private javax.swing.JTextPane tp_r1;
+    private javax.swing.JTextPane tp_r2;
+    private javax.swing.JTextPane tp_r3;
+    private javax.swing.JTextPane tp_r4;
+    private javax.swing.JTextPane tp_r5;
+    private javax.swing.JTextPane tp_r6;
+    private javax.swing.JTextPane tp_r7;
     // End of variables declaration//GEN-END:variables
 }

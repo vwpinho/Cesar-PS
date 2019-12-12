@@ -333,8 +333,8 @@
                                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jLabel10" alignment="0" min="-2" pref="17" max="-2" attributes="0"/>
                               <Component id="jScrollPane8" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -344,7 +344,7 @@
                   </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -457,7 +457,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane1">
+            <Component class="javax.swing.JTextPane" name="tp_r0">
             </Component>
           </SubComponents>
         </Container>
@@ -468,7 +468,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane2">
+            <Component class="javax.swing.JTextPane" name="tp_r2">
             </Component>
           </SubComponents>
         </Container>
@@ -479,7 +479,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane3">
+            <Component class="javax.swing.JTextPane" name="tp_r4">
             </Component>
           </SubComponents>
         </Container>
@@ -490,7 +490,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane4">
+            <Component class="javax.swing.JTextPane" name="tp_r6">
             </Component>
           </SubComponents>
         </Container>
@@ -501,7 +501,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane5">
+            <Component class="javax.swing.JTextPane" name="tp_r1">
             </Component>
           </SubComponents>
         </Container>
@@ -512,7 +512,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane6">
+            <Component class="javax.swing.JTextPane" name="tp_r3">
             </Component>
           </SubComponents>
         </Container>
@@ -523,7 +523,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane7">
+            <Component class="javax.swing.JTextPane" name="tp_r5">
             </Component>
           </SubComponents>
         </Container>
@@ -534,7 +534,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane8">
+            <Component class="javax.swing.JTextPane" name="tp_r7">
             </Component>
           </SubComponents>
         </Container>
