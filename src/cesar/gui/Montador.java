@@ -165,7 +165,7 @@ public class Montador {
                         }
                         b1 = 128;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "NOT":
                         //10000001
@@ -175,7 +175,7 @@ public class Montador {
                         }
                         b1 = 129;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "INC":
                         //10000010
@@ -185,7 +185,7 @@ public class Montador {
                         }
                         b1 = 130;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "DEC":
                         //10000011
@@ -195,7 +195,7 @@ public class Montador {
                         }
                         b1 = 131;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "NEG":
                         //10000100
@@ -205,7 +205,7 @@ public class Montador {
                         }
                         b1 = 132;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "TST":
                         //10000101
@@ -215,7 +215,7 @@ public class Montador {
                         }
                         b1 = 133;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "ROR":
                         //10000110
@@ -225,7 +225,7 @@ public class Montador {
                         }
                         b1 = 134;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "ROL":
                         //10000111
@@ -235,7 +235,7 @@ public class Montador {
                         }
                         b1 = 135;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "ASR":
                         //10001000
@@ -245,7 +245,7 @@ public class Montador {
                         }
                         b1 = 136;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "ASL":
                         //10001001
@@ -255,7 +255,7 @@ public class Montador {
                         }
                         b1 = 137;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "ADC":
                         //10001010
@@ -265,7 +265,7 @@ public class Montador {
                         }
                         b1 = 138;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "SBC":
                         //10001011
@@ -275,7 +275,7 @@ public class Montador {
                         }
                         b1 = 139;
                         b2 = mmm1 * 8 + rrr1;
-                        pw.printf("%d %d %d\n", b1, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "MOV":
                         // Precisa de todos os modos de end
@@ -292,7 +292,7 @@ public class Montador {
                         b1 = 144 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
                         System.out.println(b1 + " " + b2);
-                        pw.printf("%d %d %d\n", 144, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         //pw.write("a");
                         break;
                     case "ADD":
@@ -309,7 +309,7 @@ public class Montador {
                         }
                         b1 = 160 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        pw.printf("%d %d %d\n", 160, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "SUB":
                         if (line[1].charAt(0) == 'R') {
@@ -322,7 +322,7 @@ public class Montador {
                         }
                         b1 = 176 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        pw.printf("%d %d %d\n", 176, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         break;
                     case "CMP":
                         if (line[1].charAt(0) == 'R') {
@@ -335,7 +335,7 @@ public class Montador {
                         }
                         b1 = 192 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        pw.printf("%d %d %d\n", 192, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         //11000000
                         break;
                     case "AND":
@@ -349,7 +349,7 @@ public class Montador {
                         }
                         b1 = 208 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        pw.printf("%d %d %d\n", 208, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         //11010000
                         break;
                     case "OR":
@@ -363,7 +363,7 @@ public class Montador {
                         }
                         b1 = 224 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        pw.printf("%d %d %d\n", 224, b1, b2);
+                        pw.printf("%d %d\n", b1, b2);
                         //11100000
                         break;
                 }
