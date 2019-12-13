@@ -95,6 +95,7 @@ public class Montador {
                         ddd = Integer.parseInt(line[1]);
                         b1 = 52;
                         pw.printf("%d %d\n", b1, ddd);
+                        break;
                     case "BVC":
                         //00110101
                         ddd = Integer.parseInt(line[1]);

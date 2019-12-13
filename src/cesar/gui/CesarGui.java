@@ -81,7 +81,7 @@ public class CesarGui extends javax.swing.JFrame {
                     case 3:
                         return "BPL";
                     case 4:
-                        return "BPL";
+                        return "BMI";
                     case 5:
                         return "BVC";
                     case 6:
@@ -161,6 +161,7 @@ public class CesarGui extends javax.swing.JFrame {
             case "BNE":
             case "BEQ":
             case "BPL":
+            case "BMI":
             case "BVC":
             case "BVS":
             case "BCC":
