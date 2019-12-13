@@ -291,7 +291,7 @@ public class Montador {
                         //System.out.println(rrr1);
                         b1 = 144 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
-                        System.out.println(b1 + " " + b2);
+                        System.out.println(rrr1 + " " + rrr2);
                         pw.printf("%d %d\n", b1, b2);
                         //pw.write("a");
                         break;

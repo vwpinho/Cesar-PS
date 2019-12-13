@@ -4233,15 +4233,18 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     break;
                 case "MOV":
-                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
                     rrr2 = i2 % 8;
+                    System.out.println(i2);
+                    System.out.println(rrr);
+                    System.out.println(rrr2);
                     op1 = this.get_op(mmm, rrr);
-                    op2 = this.get_op(mmm2, rrr2);
                     op2 = op1;
+                    System.out.println(op2);
                     if(op2 == 0){
                         jRadioButton4.setSelected(false); // desliga o V
                         jRadioButton5.setSelected(false); // desliga o N
@@ -4273,6 +4276,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 2;
                     break;
                 case "ADD":
                     i = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
