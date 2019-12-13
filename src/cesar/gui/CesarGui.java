@@ -204,7 +204,7 @@ public class CesarGui extends javax.swing.JFrame {
                     rrr = i % 8;
                     switch(mmm){
                         case 0:
-                            R[7] += 1;
+                            R[7] += 2;
                             break;
                         case 1:
                             R[7] = R[rrr];
