@@ -4279,8 +4279,8 @@ public class CesarGui extends javax.swing.JFrame {
                     R[7] += 2;
                     break;
                 case "ADD":
-                    i = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String)((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4327,8 +4327,8 @@ public class CesarGui extends javax.swing.JFrame {
                     R[7] += 2;
                     break;
                 case "SUB":
-                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4376,8 +4376,8 @@ public class CesarGui extends javax.swing.JFrame {
                     break;
                 case "CMP":
                     int comp;
-                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4421,10 +4421,11 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 2;
                     break;
                 case "AND":
-                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4463,10 +4464,11 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 2;
                     break;
                 case "OR":
-                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
-                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 2, 1));
+                    i = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7], 1));
+                    i2 = Integer.parseInt((String) ((DefaultTableModel) tb_cod_mem.getModel()).getValueAt(R[7] + 1, 1));
                     mmm = (i/2)%8;
                     rrr = ((i % 2) * 4) + (i2 / 64);
                     mmm2 = (i2 / 8) % 8;
@@ -4505,6 +4507,7 @@ public class CesarGui extends javax.swing.JFrame {
                     }
                     this.set_op(mmm, rrr, op1);
                     this.set_op(mmm2, rrr2, op2);
+                    R[7] += 2;
                     break;
             }
             tp_r0.setText(Integer.toString(R[0]));
