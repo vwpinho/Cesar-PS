@@ -1,0 +1,4 @@
+NOP
+INC R1
+OR (R1) R2
+HLT

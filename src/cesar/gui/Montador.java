@@ -163,6 +163,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 128;
                         b2 = mmm1 * 8 + rrr1;
@@ -173,6 +176,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 129;
                         b2 = mmm1 * 8 + rrr1;
@@ -183,6 +189,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 130;
                         b2 = mmm1 * 8 + rrr1;
@@ -193,6 +202,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 131;
                         b2 = mmm1 * 8 + rrr1;
@@ -203,6 +215,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 132;
                         b2 = mmm1 * 8 + rrr1;
@@ -213,6 +228,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 133;
                         b2 = mmm1 * 8 + rrr1;
@@ -223,6 +241,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 134;
                         b2 = mmm1 * 8 + rrr1;
@@ -233,6 +254,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 135;
                         b2 = mmm1 * 8 + rrr1;
@@ -243,6 +267,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 136;
                         b2 = mmm1 * 8 + rrr1;
@@ -253,6 +280,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 137;
                         b2 = mmm1 * 8 + rrr1;
@@ -263,6 +293,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 138;
                         b2 = mmm1 * 8 + rrr1;
@@ -273,6 +306,9 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         b1 = 139;
                         b2 = mmm1 * 8 + rrr1;
@@ -284,10 +320,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
-                        }
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
+                        } 
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[2].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         //System.out.println(rrr1);
                         b1 = 144 + mmm1 * 2 + rrr1 / 4;
@@ -303,10 +345,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[2].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         b1 = 160 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
@@ -316,10 +364,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[2].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         b1 = 176 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
@@ -329,10 +383,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         b1 = 192 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
@@ -343,10 +403,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[2].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         b1 = 208 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
@@ -357,10 +423,16 @@ public class Montador {
                         if (line[1].charAt(0) == 'R') {
                             mmm1 = 0;
                             rrr1 = line[1].charAt(1) - 48;
+                        } else if(line[1].charAt(0) == '('){
+                            mmm1 = 4;
+                            rrr1 = line[1].charAt(2) - 48;
                         }
                         if (line[2].charAt(0) == 'R') {
                             mmm2 = 0;
                             rrr2 = line[2].charAt(1) - 48;
+                        } else if(line[2].charAt(0) == '('){
+                            mmm2 = 4;
+                            rrr2 = line[1].charAt(2) - 48;
                         }
                         b1 = 224 + mmm1 * 2 + rrr1 / 4;
                         b2 = (rrr1 % 4) * 64 + mmm2 * 8 + rrr2;
