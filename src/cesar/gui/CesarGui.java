@@ -4519,7 +4519,7 @@ public class CesarGui extends javax.swing.JFrame {
             tp_r5.setText(Integer.toString(R[5]));
             tp_r6.setText(Integer.toString(R[6]));
             tp_r7.setText(Integer.toString(R[7]));
-        
+            tb_cod_mem.setRowSelectionInterval(R[7], R[7]);
     }
 
     /**
